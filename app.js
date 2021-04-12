@@ -49,6 +49,23 @@ function pageChange(idSelect) {
     }
     Plotly.newPlot("bar", data1, layout1);
 
+// Bubble Chart Setup
+    let trace2 = {
+      x: otuIDs,
+      y: sampleValues,
+      text: otuLabels,
+      mode: "markers",
+      marker: {
+        size: sampleValues,
+        color: otuIDs,
+        colorscale: "Earth"
+      }
+    };
+    let data2 = [trace2];
+    let layout2 = {
+      margin: { t: 30 }
+    };
+    Plotly.newPlot("bubble", data2, layout2);
 
   })
 }
