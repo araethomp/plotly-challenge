@@ -12,11 +12,11 @@ d3.json("revisedSamples.json").then((jsonData) => {
     .property("value", id)
     .text(id);
   });
-  pageChange(names[0]);
+  optionChanged(names[0]);
 
 });
 
-function pageChange(idSelect) {
+function optionChanged(idSelect) {
   //console.log(idSelect);
   d3.json("revisedSamples.json").then((data) => {
     let samples = data.samples;
@@ -66,6 +66,19 @@ function pageChange(idSelect) {
       margin: { t: 30 }
     };
     Plotly.newPlot("bubble", data2, layout2);
-
   })
+
+// Demographic Info Changes
+    d3.json("revisedSamples.json").then((data) => {
+      let demoInfo = data.metadata;
+      //console.log(demoInfo);
+      let filteredDemoInfo = demoInfo.filter(demoObj => demoObj.id == idSelect);
+      let filteredDemoInfos = filteredDemoInfo[0];
+      //console.log(filteredDemoInfos);
+      let demoSelect = d3.select("#sample-metadata");
+      demoSelect.html("");
+      Object.entries(filteredDemoInfo[0]).forEach(([key, value]) => {
+        demoSelect.append("h5").text(`${key}: ${value}`);
+      });
+    });
 }
