@@ -29,8 +29,26 @@ function pageChange(idSelect) {
     let otuIDs = filteredSample.otu_ids;
     let otuLabels = filteredSample.otu_labels;
     let sampleValues = filteredSample.sample_values;
-    console.log(otuIDs)
-    console.log(otuLabels)
-    console.log(sampleValues)
+    // console.log(otuIDs)
+    // console.log(otuLabels)
+    // console.log(sampleValues)
+    let yLabel = otuIDs.slice(0, 10).map(otuIDs => `OTU ${otuIDs}`).reverse();
+    //console.log(yLabel)
+// Horizontal Bar Chart Setup
+    let trace1 = {
+      y: yLabel,
+      x: sampleValues.slice(0, 10).reverse(),
+      text: otuLabels.slice(0, 10).reverse(),
+      type: "bar",
+      orientation: "h"
+    }
+    let data1 = [trace1];
+
+    let layout1 = {
+      margin: { t: 30, l: 150 }
+    }
+    Plotly.newPlot("bar", data1, layout1);
+
+
   })
 }
