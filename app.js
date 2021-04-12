@@ -21,43 +21,16 @@ function pageChange(idSelect) {
   d3.json("revisedSamples.json").then((data) => {
     let samples = data.samples;
     let filteredSamples = samples.filter(sampleObj => sampleObj.id == idSelect);
-    console.log(samples);
-    console.log(filteredSamples);
+    //console.log(samples);
+    //console.log(filteredSamples);
     let filteredSample = filteredSamples[0];
-    console.log(filteredSample);
+    //console.log(filteredSample);
+
+    let otuIDs = filteredSample.otu_ids;
+    let otuLabels = filteredSample.otu_labels;
+    let sampleValues = filteredSample.sample_values;
+    console.log(otuIDs)
+    console.log(otuLabels)
+    console.log(sampleValues)
   })
 }
-
-//
-// function demoInfo(data) {
-//   d3.json('revisedSamples.json').then((data) => {
-//       //console.log(data);
-//   let demoGrab = d3.select("#sample-metadata");
-//   demoGrab.html("");
-//   Object.entries(data).forEach(([key, value]) => {
-//     demoGrab.append("h5").text(`${key}: ${value}`);
-//     })
-//   })
-// }
-// demoInfo();
-// // Horizontal Bar Chart
-// function barChart(data) {
-//   d3.json('revisedSamples.json').then((data) => {
-//       //console.log(data);
-//       const otuIds = data.otu_ids;
-//       const otuLabels = data.otu_labels;
-//       const sampleValues = data.sample_values;
-//
-//   let trace1 = {
-//     type: 'bar',
-//     x: otuIds,
-//     y: sampleValues,
-//     orientation: 'h'
-//   };
-//   let data2 = [trace1];
-//
-//   Plotly.newPlot('bar', data2);
-//   })
-// }
-// barChart();
-// // d3.selectAll("#selDataset").on("change", init);
